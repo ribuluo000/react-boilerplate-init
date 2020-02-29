@@ -6,13 +6,13 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import { useIntl } from 'react-intl';
+import messages from 'translations/messages';
 
 export default function HomePage() {
+  const intl = useIntl();
+
   return (
-    <h1>
-      <FormattedMessage {...messages.header} />
-    </h1>
+    <h1>{intl.formatMessage(messages['This is the HomePage container!'])}</h1>
   );
 }
