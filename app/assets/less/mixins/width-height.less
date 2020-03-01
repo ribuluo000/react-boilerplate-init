@@ -1,0 +1,10 @@
+.generate-width-height(150);
+.generate-width-height(@n, @i: 1) when (@i =< @n) {
+  .w-@{i} {
+    width:(1px*@i) !important;
+  }
+  .h-@{i} {
+    height:(1px*@i) !important;
+  }
+  .generate-width-height(@n, (@i + 1));
+}

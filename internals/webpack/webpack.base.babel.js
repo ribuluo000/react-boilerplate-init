@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const antdThemeVars = require(`${path.resolve(process.cwd(), 'app', 'assets','less','antd','antdThemeVars.json')}`);
 
 module.exports = options => ({
   mode: options.mode,
@@ -40,6 +41,29 @@ module.exports = options => ({
         test: /\.css$/,
         include: /node_modules/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.less$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              importLoaders: 1,
+              modifyVars: {
+                ...antdThemeVars,
+              },
+              javascriptEnabled: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
