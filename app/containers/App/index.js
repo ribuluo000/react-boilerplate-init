@@ -11,7 +11,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
-import Demo from 'zzdemo/Loadable';
+import Demo from 'zzdemos/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 
