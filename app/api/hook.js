@@ -24,6 +24,10 @@ export const useApi = () => {
         if (didCancel) {
           return;
         }
+        if (!jsonObj) {
+          setState({ ...initialState, isError: true });
+          return;
+        }
         setState({ ...initialState, data: jsonObj.data });
       } catch (error) {
         if (didCancel) {
