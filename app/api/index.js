@@ -37,8 +37,10 @@ const post = async (url, data = {}, callback) => {
   return ret;
 };
 
-export const test = async (data = {}, callback) =>
-  await get('/users/ribuluo000/repos', data, callback);
+export const test = async (data = {}, callback) => {
+  const username = data.username || 'ribuluo000';
+  return await get(`/users/${username}/repos`, data, callback);
+};
 
 export const login = async (data = {}, callback) =>
   await post('/url', data, callback);

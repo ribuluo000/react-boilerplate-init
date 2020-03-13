@@ -9,6 +9,7 @@ import LessDemoPage from 'zzdemos/LessDemoPage';
 import AntdDemoPage from 'zzdemos/AntdDemoPage';
 import AxiosDemoPage from 'zzdemos/AxiosDemoPage';
 import IntlDemoPage from 'zzdemos/IntlDemoPage';
+import SagaDemoPage from 'zzdemos/SagaDemoPage';
 
 import configs from 'configs/index';
 
@@ -23,6 +24,7 @@ export default function Demo() {
         <Route path="/demo/intl" component={IntlDemoPage} />
         <Route path="/demo/antd" component={AntdDemoPage} />
         <Route path="/demo/axios" component={AxiosDemoPage} />
+        <Route path="/demo/saga" component={SagaDemoPage} />
       </Switch>
     </div>
   );
