@@ -5,7 +5,6 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import LessDemoPage from 'zzdemos/LessDemoPage';
 import AntdDemoPage from 'zzdemos/AntdDemoPage';
 import AxiosDemoPage from 'zzdemos/AxiosDemoPage';
@@ -24,7 +23,6 @@ export default function Demo() {
         <Route path="/demo/intl" component={IntlDemoPage} />
         <Route path="/demo/antd" component={AntdDemoPage} />
         <Route path="/demo/axios" component={AxiosDemoPage} />
-        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );

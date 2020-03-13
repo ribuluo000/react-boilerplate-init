@@ -6,14 +6,16 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
-import messages from './messages';
+import messages from 'translations/messages';
 
 export default function NotFound() {
+  const intl = useIntl();
+
   return (
     <h1>
-      <FormattedMessage {...messages.header} />
+      {intl.formatMessage(messages['This is the NotFoundPage container!'])}
     </h1>
   );
 }

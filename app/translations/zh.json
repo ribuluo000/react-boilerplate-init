@@ -1,3 +1,5 @@
 {
-  "This is the HomePage container!":"这是主页!"
+  "This is the HomePage container!":"这是主页!",
+  "This is the NotFoundPage container!":"没有这个页面!",
+  "This is the Demo container!":"这是示例页面!"
 }

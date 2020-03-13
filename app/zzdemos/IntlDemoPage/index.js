@@ -13,6 +13,6 @@ export default function IntlDemoPage() {
   const intl = useIntl();
 
   return (
-    <h1>{intl.formatMessage(messages['This is the HomePage container!'])}</h1>
+    <h1>{intl.formatMessage(messages['This is the Demo container!'])}</h1>
   );
 }
