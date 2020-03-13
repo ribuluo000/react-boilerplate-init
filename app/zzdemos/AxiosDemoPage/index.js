@@ -1,5 +1,5 @@
 /*
- * AxiosDemo
+ * AxiosDemoPage
  *
  */
 
@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import api, { test } from 'api';
 import { useApi } from 'api/hook';
 
-export default function AxiosDemo() {
+export default function AxiosDemoPage() {
   const [data, setData] = useState([]);
   const [options, setOptions] = useState({
     type: 'all',
@@ -91,7 +91,7 @@ export default function AxiosDemo() {
 
   return (
     <div className="">
-      AxiosDemo {data}
+      AxiosDemoPage {data}
       {v1}
       <div onClick={onClickCallApiOnce}>Click to CallApi once</div>
       {v2}

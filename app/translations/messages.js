@@ -1,14 +1,21 @@
 /*
- * HomePage Messages
+ * global Messages
  *
- * This contains all the text for the HomePage container.
+ * This contains all the text for the app.
  */
 import { defineMessages } from 'react-intl';
 
+const enTranslationMessages = require('./en.json');
 
-export default defineMessages({
-  'This is the HomePage container!': {
-    id: `This is the HomePage container!`,
-    defaultMessage: 'This is the HomePage container!',
-  },
-});
+const getMessages = () => {
+  const obj = {};
+  Object.keys(enTranslationMessages).map(value => {
+    obj[value] = {
+      id: value,
+      defaultMessage: value,
+    };
+  });
+  return obj;
+};
+
+export default defineMessages(getMessages());

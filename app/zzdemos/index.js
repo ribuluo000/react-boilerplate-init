@@ -4,20 +4,28 @@
  */
 
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import LessDemoPage from 'zzdemos/LessDemoPage';
+import AntdDemoPage from 'zzdemos/AntdDemoPage';
+import AxiosDemoPage from 'zzdemos/AxiosDemoPage';
+import IntlDemoPage from 'zzdemos/IntlDemoPage';
+
 import configs from 'configs/index';
-import LessDemo from './LessDemo';
-import AntdDemo from './AntdDemo';
-import AxiosDemo from './AxiosDemo';
 
 console.log('configs', configs);
 
 export default function Demo() {
-
   return (
     <div className="">
-      <LessDemo />
-      <AntdDemo />
-      <AxiosDemo />
+      <Route path="/demo" component={IntlDemoPage} />
+      <Switch>
+        <Route path="/demo/less" component={LessDemoPage} />
+        <Route path="/demo/intl" component={IntlDemoPage} />
+        <Route path="/demo/antd" component={AntdDemoPage} />
+        <Route path="/demo/axios" component={AxiosDemoPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
     </div>
   );
 }

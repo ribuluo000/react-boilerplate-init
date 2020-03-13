@@ -1,11 +1,11 @@
 /*
- * AntdDemo
+ * AntdDemoPage
  *
  */
 
 import React from 'react';
 import { Button, DatePicker, message } from 'antd';
-export default function AntdDemo() {
+export default function AntdDemoPage() {
   const handleChangeDatePicker = date => {
     console.log('handleChangeDatePicker.date', date);
     message.info(

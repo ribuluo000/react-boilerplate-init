@@ -14,12 +14,11 @@ import HomePage from 'containers/HomePage/Loadable';
 import Demo from 'zzdemos/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
-
 export default function App() {
   return (
     <div>
       <Switch>
-        <Route exact path="/demo" component={Demo} />
+        <Route path="/demo" component={Demo} />
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
