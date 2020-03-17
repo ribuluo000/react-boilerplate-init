@@ -5,11 +5,11 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import LessDemoPage from 'zzdemos/LessDemoPage';
-import AntdDemoPage from 'zzdemos/AntdDemoPage';
-import AxiosDemoPage from 'zzdemos/AxiosDemoPage';
-import IntlDemoPage from 'zzdemos/IntlDemoPage';
-import SagaDemoPage from 'zzdemos/SagaDemoPage';
+import LessDemoPage from 'zzdemos/pages/LessDemoPage';
+import AntdDemoPage from 'zzdemos/pages/AntdDemoPage';
+import AxiosDemoPage from 'zzdemos/pages/AxiosDemoPage';
+import IntlDemoPage from 'zzdemos/pages/IntlDemoPage';
+import SagaDemoPage from 'zzdemos/pages/SagaDemoPage';
 
 import configs from 'configs/index';
 
