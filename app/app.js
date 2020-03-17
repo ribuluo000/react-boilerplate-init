@@ -17,6 +17,9 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 import 'assets/less/global.less';
 
+// Import root mocks
+import mocks from 'mocks';
+
 // Import root app
 import App from 'containers/App';
 

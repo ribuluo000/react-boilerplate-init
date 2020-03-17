@@ -37,6 +37,9 @@ const post = async (url, data = {}, callback) => {
   return ret;
 };
 
+export const template = async (data = {}, callback) =>
+  await get('/template1', data, callback);
+
 export const test = async (data = {}, callback) => {
   const username = data.username || 'ribuluo000';
   return await get(`/users/${username}/repos`, data, callback);
