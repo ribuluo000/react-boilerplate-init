@@ -128,8 +128,10 @@ export default function SvgDemoPage() {
   return (
     <div className="">
       SvgDemoPage
-      <AppstoreOutlined />
-      <Icon component={() => SuccessSvg({ color: 'red' })} />
+      <AppstoreOutlined style={{ color: 'red', fontSize: 30 }} />
+      <Icon
+        component={() => SuccessSvg({ color: 'red', width: 30, height: 30 })}
+      />
     </div>
   );
 }
