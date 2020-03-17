@@ -50,6 +50,22 @@
 
 ---
 
+### 初始化应用数据 使用示例：
+详见 zzdemos/containers/App;
+
+```
+  useEffect(() => {
+    /**
+     * 在这里做一些初始化操作，这些操作可能有副作用，
+     * 所以使用 useEffect saga 等来处理，并将结果
+     * 放到session或者redux中；
+     * */
+    getServerData();
+  }, []);
+```
+---
+
+
 ### pages 新建模板使用示例：
 将 zzdemos/pages/TemplateDemoPage 复制到 app/pages 目录下，并修改名称；
 

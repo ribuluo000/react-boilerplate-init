@@ -3,47 +3,57 @@
  *
  */
 
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Layout } from 'antd';
+import React, { useEffect, memo } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import App from 'zzdemos/pages/App';
+import { loadServerData } from './actions';
+import reducer from './reducer';
+import saga from './saga';
 
-import MenuDemoPage from 'zzdemos/pages/MenuDemoPage';
-import LessDemoPage from 'zzdemos/pages/LessDemoPage';
-import AntdDemoPage from 'zzdemos/pages/AntdDemoPage';
-import AxiosDemoPage from 'zzdemos/pages/AxiosDemoPage';
-import MockDemoPage from 'zzdemos/pages/MockDemoPage';
-import IntlDemoPage from 'zzdemos/pages/IntlDemoPage';
-import SagaDemoPage from 'zzdemos/pages/SagaDemoPage';
+const key = 'zzdemoapp';
 
-import configs from 'configs/index';
-
-const { Header, Footer, Sider, Content } = Layout;
-
-console.log('configs', configs);
-
-export default function Demo() {
+export function Demo({ loading, error, serverData, getServerData }) {
   console.log('Demo------------------------Demo');
-  return (
-    <div className="">
-      <Layout>
-        <Sider>
-          <Route path="/demo" component={MenuDemoPage} />
-        </Sider>
-        <Layout>
-          <Header>Header</Header>
-          <Content>
-            <Switch>
-              <Route path="/demo/less" component={LessDemoPage} />
-              <Route path="/demo/intl" component={IntlDemoPage} />
-              <Route path="/demo/antd" component={AntdDemoPage} />
-              <Route path="/demo/axios" component={AxiosDemoPage} />
-              <Route path="/demo/mock" component={MockDemoPage} />
-              <Route path="/demo/saga" component={SagaDemoPage} />
-            </Switch>
-          </Content>
-          <Footer>Footer</Footer>
-        </Layout>
-      </Layout>
-    </div>
-  );
+  console.log('loading, error, serverData', loading, error, serverData);
+
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
+  useEffect(() => {
+    /**
+     * 在这里做一些初始化操作，这些操作可能有副作用，
+     * 所以使用 useEffect saga 等来处理，并将结果
+     * 放到session或者redux中；
+     * */
+    getServerData();
+  }, []);
+
+  return <App />;
 }
+Demo.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  serverData: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  getServerData: PropTypes.func,
+};
+const mapStateToProps = state => ({
+  serverData: state?.zzdemoapp?.serverData || {},
+  loading: state?.zzdemoapp?.loading,
+  error: state?.zzdemoapp?.error,
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    getServerData: () => {
+      dispatch(loadServerData());
+    },
+  };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect, memo)(Demo);
