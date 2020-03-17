@@ -86,6 +86,11 @@ export default function MenuDemoPage() {
           <span>saga</span>
         </span>
       </Menu.Item>
+      <Menu.Item key="/demo/svg">
+        <span>
+          <span>svg</span>
+        </span>
+      </Menu.Item>
     </Menu>
   );
 }

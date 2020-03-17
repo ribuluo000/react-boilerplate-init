@@ -14,6 +14,7 @@ import AxiosDemoPage from 'zzdemos/pages/AxiosDemoPage';
 import MockDemoPage from 'zzdemos/pages/MockDemoPage';
 import IntlDemoPage from 'zzdemos/pages/IntlDemoPage';
 import SagaDemoPage from 'zzdemos/pages/SagaDemoPage';
+import SvgDemoPage from 'zzdemos/pages/SvgDemoPage';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -34,6 +35,7 @@ export default function Demo() {
               <Route path="/demo/axios" component={AxiosDemoPage} />
               <Route path="/demo/mock" component={MockDemoPage} />
               <Route path="/demo/saga" component={SagaDemoPage} />
+              <Route path="/demo/svg" component={SvgDemoPage} />
             </Switch>
           </Content>
           <Footer>Footer</Footer>

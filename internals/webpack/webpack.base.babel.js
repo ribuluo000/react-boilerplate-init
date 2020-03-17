@@ -4,19 +4,24 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const antdThemeVars = require(`${path.resolve(process.cwd(), 'app', 'assets','less','antd','antdThemeVars.json')}`);
+const antdThemeVars = require(`${path.resolve(
+  process.cwd(),
+  'app',
+  'assets',
+  'less',
+  'antd',
+  'antdThemeVars.json',
+)}`);
 
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
-  output: Object.assign(
-    {
-      // Compile into js/build.js
-      path: path.resolve(process.cwd(), 'build'),
-      publicPath: '/',
-    },
-    options.output,
-  ), // Merge with env dependent settings
+  output: {
+    // Compile into js/build.js
+    path: path.resolve(process.cwd(), 'build'),
+    publicPath: '/',
+    ...options.output,
+  }, // Merge with env dependent settings
   optimization: options.optimization,
   module: {
     rules: [
@@ -68,6 +73,22 @@ module.exports = options => ({
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
         use: 'file-loader',
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        include: path.resolve(__dirname, '..', '..', 'app/assets/svg'),
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: '@svgr/webpack',
+            options: {
+              babel: false,
+              icon: true,
+            },
+          },
+        ],
       },
       {
         test: /\.svg$/,

@@ -113,3 +113,30 @@
 详见 zzdemos/pages/MenuDemoPage;
 
 ---
+
+### svg 使用示例
+
+- 在 assets/svg 添加自定义svg;
+- 在文件中使用自定义svg;
+
+```
+import React from 'react';
+import Icon, { AppstoreOutlined } from '@ant-design/icons';
+import { SuccessSvg } from 'assets/svg';
+
+export default function SvgDemoPage() {
+  return (
+    <div className="">
+      SvgDemoPage
+      <AppstoreOutlined />
+      <Icon component={() => SuccessSvg({ color: 'red' })} />
+    </div>
+  );
+}
+```
+
+详见 zzdemos/pages/SvgDemoPage;
+详见 assets/svg;
+---
+
+
