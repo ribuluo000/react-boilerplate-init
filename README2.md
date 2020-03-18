@@ -75,7 +75,7 @@
 ### Menu Layout 使用示例：
 // 首次进入和刷新后初始化菜单选中状态
 
-// 监听路由改变并设置菜单选中状态
+// 监听路由改变并设置菜单选中状态; 用session中的某个状态变量控制路由跳转；eg: 这个用户如果没有登录或者登录已过期，那么跳转登录页面；
 
 // 跳转到目标路由 e.key
 
@@ -85,7 +85,10 @@
   const pathnameInit = window.location.pathname;
   const [pathname, setPathname] = useState([pathnameInit]);
 
-  // 监听路由改变并设置菜单选中状态
+  /**
+   * 监听路由改变并设置菜单选中状态；
+   * 用session中的某个状态变量控制路由跳转；eg: 这个用户如果没有登录或者登录已过期，那么跳转登录页面；
+   *  */
   useEffect(() => {
     let didCancel = false;
     const unlisten = history.listen((location, action) => {
@@ -96,7 +99,16 @@
       if (didCancel) {
         return;
       }
-      setPathname([location.pathname]);
+      // 用session中的某个状态变量控制路由跳转；
+      const isLoggedIn = true;
+      if (isLoggedIn) {
+        setPathname([location.pathname]);
+      } else if (location.pathname !== '/demo') {
+        history.push('/demo');
+        setPathname(['/demo']);
+      } else {
+        console.log('/demo');
+      }
     });
     return () => {
       didCancel = true;
