@@ -12,11 +12,20 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
-  const rootReducer = combineReducers({
+  const appReducer = combineReducers({
     language: languageProviderReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });
+
+  const rootReducer = (state, action) => {
+    // 重置redux为初始状态 eg: 在登录页需要进行重置；
+    if (action.type === 'RESET_REDUX') {
+      const { language } = state;
+      state = { language };
+    }
+    return appReducer(state, action);
+  };
 
   return rootReducer;
 }

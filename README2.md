@@ -139,6 +139,22 @@ export default function SvgDemoPage() {
 
 详见 zzdemos/pages/SvgDemoPage;
 详见 assets/svg;
+
+---
+
+- 重置redux为初始状态 eg: 在登录页需要进行重置；
+```
+  const rootReducer = (state, action) => {
+    // 重置redux为初始状态 eg: 在登录页需要进行重置；
+    if (action.type === 'RESET_REDUX') {
+      const { language } = state;
+      state = { language };
+    }
+    return appReducer(state, action);
+  };
+
+```
+
 ---
 
 
