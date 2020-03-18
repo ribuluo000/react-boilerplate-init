@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import api, { test } from 'api';
+import api from 'api';
 import { useApi } from 'api/hook';
 
 export default function AxiosDemoPage() {
@@ -14,7 +14,7 @@ export default function AxiosDemoPage() {
     sort: 'updated',
   });
   const requestData = {
-    funcName: 'test',
+    funcName: 'testGet',
     options,
     startTime: new Date().getTime(),
   };
@@ -55,7 +55,7 @@ export default function AxiosDemoPage() {
     });
 
     const callApi = async () => {
-      const jsonObj = await test(options);
+      const jsonObj = await api.testGet(options);
       if (!jsonObj) {
         return;
       }
@@ -75,7 +75,7 @@ export default function AxiosDemoPage() {
   const [state2, setRequestData2] = useApi();
   const onClickCallApiOnce = () => {
     setRequestData2({
-      funcName: 'test',
+      funcName: 'testGet',
       options,
       // startTime: new Date().getTime(),
     });

@@ -19,6 +19,11 @@
 ---
 
 ### 网络请求使用示例：
+
+- 开发新的模块时将 api/services/template 复制到 api/services 目录下，并修改为对应的模块名称，eg: user ;
+- 将需要的接口文件加入index.js;
+- 暂时不用的接口可以注释掉;
+
 详见 zzdemos/pages/AxiosDemoPage;
 
 ---

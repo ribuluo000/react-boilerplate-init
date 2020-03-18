@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import api, { template } from 'api';
+import api from 'api';
 import { useApi } from 'api/hook';
 
 export default function MockDemoPage() {
@@ -14,7 +14,7 @@ export default function MockDemoPage() {
     // sort: 'updated',
   });
   const requestData = {
-    funcName: 'template',
+    funcName: 'templateGet',
     options,
     startTime: new Date().getTime(),
   };
@@ -55,7 +55,7 @@ export default function MockDemoPage() {
     });
 
     const callApi = async () => {
-      const jsonObj = await template(options);
+      const jsonObj = await api.templateGet(options);
       if (!jsonObj) {
         return;
       }
@@ -75,7 +75,7 @@ export default function MockDemoPage() {
   const [state2, setRequestData2] = useApi();
   const onClickCallApiOnce = () => {
     setRequestData2({
-      funcName: 'template',
+      funcName: 'templateGet',
       options,
       // startTime: new Date().getTime(),
     });

@@ -1,6 +1,6 @@
 /* eslint-disable no-return-await */
 import React, { useState, useEffect } from 'react';
-import * as api from 'api';
+import api from 'api';
 
 export const useApi = () => {
   const [requestData, setRequestData] = useState({
