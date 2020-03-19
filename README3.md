@@ -182,7 +182,33 @@ return appReducer(state, action);
 
 ### 根据不同环境添加不同配置文件；
 
-深层对象安全调用
+config
+
+package.json
+```
+    "build:uat": "cross-env NODE_ENV=production config=uat webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build:dev": "cross-env NODE_ENV=production config=development webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build": "cross-env NODE_ENV=production config=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+```
+
+webpack.base.babel.js
+```
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      config: JSON.stringify(process.env.config), // add this line
+    }),
+```
+
+use in code
+```
+process.env.config
+```
+
+详见 config/index.js
+
+---
+
+### 深层对象安全调用
 const safe = obj?.qux?.baz; // undefined
 https://babeljs.io/docs/en/next/babel-plugin-proposal-optional-chaining
 https://www.jianshu.com/p/e9ed7660034e
