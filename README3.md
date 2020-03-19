@@ -53,6 +53,37 @@ return (
 
 ---
 
+### build 之后重新打开网页会自动更新到最新的缓存
+
+```
+// Install ServiceWorker and AppCache in the end since
+// it's not most important operation and if main code fails,
+// we do not want it installed
+if (process.env.NODE_ENV === 'production') {
+  const runtime = require('offline-plugin/runtime');
+  runtime.install({
+    onUpdating: () => {
+      console.log('SW Event:', 'onUpdating');
+    },
+    onUpdateReady: () => {
+      console.log('SW Event:', 'onUpdateReady');
+      // Tells to new SW to take control immediately
+      runtime.applyUpdate(); // 如果我们不进行 applyUpdate 那么本地缓存的资源将永远得不到更新直到清除浏览器缓存，显然是我们所不希望的。
+    },
+    onUpdated: () => {
+      console.log('SW Event:', 'onUpdated');
+      // Reload the webpage to load into the new version
+      window.location.reload();
+    },
+    onUpdateFailed: () => {
+      console.log('SW Event:', 'onUpdateFailed');
+    },
+  });
+}
+```
+
+---
+
 ### 使用less编写样式：添加less支持
 https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/css/README.md#less
 
