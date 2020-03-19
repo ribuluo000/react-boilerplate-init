@@ -174,4 +174,27 @@ export default function SvgDemoPage() {
 
 ---
 
+### 工具类 使用示例：
+utils/AABignumberUtils.js       项目中的BigNumber使用都在这里写;
+utils/AADataUtils.js            项目中常用的数据处理方法写在这里;
+utils/AADateTimeUtils.js        项目中常用的日期时间处理方法写在这里;
+utils/AAStringUtils.js          项目中常用的字符串处理方法写在这里;
+utils/AAValidateUtils.js        项目中常用的验证处理方法写在这里;
+
+
+- 字符串操作
+[JavaScript字符串操作方法总结(含ES6方法) https://blog.csdn.net/shunlu/article/details/83897447](https://blog.csdn.net/shunlu/article/details/83897447)
+[字符串的新增方法 https://es6.ruanyifeng.com/#docs/string-methods](https://es6.ruanyifeng.com/#docs/string-methods)
+[https://www.w3school.com.cn/js/js_string_methods.asp](https://www.w3school.com.cn/js/js_string_methods.asp)
+
+
+- 数组操作
+[【ES6】操作数组的常用方法有这些就够了 https://www.jianshu.com/p/e1b43e56de08](https://www.jianshu.com/p/e1b43e56de08)
+
+
+- 对象操作
+[对象的新增方法 https://es6.ruanyifeng.com/#docs/object-methods](https://es6.ruanyifeng.com/#docs/object-methods)
+
+
+---
 

@@ -76,6 +76,15 @@ ul li,dl dt{list-style: none}
 .regularFlex{display: flex;flex: 0 0 auto;}
 .nodata{text-align: center; color: @text-color-secondary; padding-top:@space-big;} // 暂无数据的样式
 .ellipsis{display: block;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;flex:1 1 auto !important;}// 文本过长时省略
+.wn { /* 强制不换行 */
+  word-wrap:normal;
+  white-space:nowrap;
+}
+.wb { /* 强制换行 */
+  white-space:normal;
+  word-wrap:break-word;
+  word-break:break-all;
+}
 .page-scrollfix{
   .page-header{ padding-right: @space-big + @scroll-width/2;}
   .page-content{ padding-right: @space-big + @scroll-width/2;}
