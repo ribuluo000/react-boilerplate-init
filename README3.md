@@ -208,6 +208,29 @@ process.env.config
 
 ---
 
+### 使用 webpack 插件 clean-webpack-plugin 清除打包的老版本文件；
+
+```
+npm i -D clean-webpack-plugin
+```
+webpack.prod.babel.js
+```
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+
+  plugins: [
+    new CleanWebpackPlugin(),
+  ]
+```
+
+---
+
+
+
+
+
+---
+
 ### 深层对象安全调用
 const safe = obj?.qux?.baz; // undefined
 https://babeljs.io/docs/en/next/babel-plugin-proposal-optional-chaining
