@@ -195,7 +195,7 @@ webpack.base.babel.js
 ```
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
-      config: JSON.stringify(process.env.config), // add this line
+      config: 'development', // add this line
     }),
 ```
 
