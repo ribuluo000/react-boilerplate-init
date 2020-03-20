@@ -225,6 +225,112 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 ---
 
+### 拆包 splitChunks
+      minSize: 200000,
+      maxSize: 244000,
+```
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: 10,
+      minSize: 0,
+      // maxSize: 244000,
+      minSize: 200000,
+      maxSize: 244000,
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+        styles: {
+          chunks: 'all',
+          name: 'style',
+          test: /\.css$/,
+          enforce: true,
+        },
+        antd2: {
+          chunks: 'all',
+          name: 'npm.ant-design',
+          // minSize: 200000,
+          // maxSize: 244000,
+          test: /node_modules\/@ant-design/,
+          enforce: true,
+        },
+        antd: {
+          chunks: 'all',
+          name: 'npm.antd',
+          test: /node_modules\/antd/,
+          enforce: true,
+        },
+        react: {
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react)[\\/]/,
+          name: 'npm.react',
+          enforce: true,
+        },
+        reactDom: {
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react-dom)[\\/]/,
+          name: 'npm.react-dom',
+          enforce: true,
+        },
+        mockjs: {
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](mockjs)[\\/]/,
+          name: 'npm.mockjs',
+          enforce: true,
+        },
+        lodash: {
+          chunks: 'all',
+          name: 'npm.lodash',
+          test: /node_modules\/lodash/,
+          enforce: true,
+        },
+        echarts: {
+          chunks: 'all',
+          name: 'npm.echarts',
+          test: /node_modules\/echarts/,
+          enforce: true,
+        },
+        moment: {
+          chunks: 'all',
+          name: 'npm.moment',
+          test: /node_modules\/moment/,
+          enforce: true,
+        },
+        core_js: {
+          chunks: 'all',
+          name: 'core_js',
+          test: /node_modules\/core-js/,
+          enforce: true,
+        },
+        bignumber: {
+          chunks: 'all',
+          name: 'npm.bignumber.js',
+          test: /node_modules\/bignumber.js/,
+          enforce: true,
+        },
+        intl: {
+          chunks: 'all',
+          name: 'npm.intl',
+          test: /node_modules\/intl/,
+          enforce: true,
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
+            )[1];
+            return `npm.${packageName.replace('@', '')}`;
+          },
+        },
+      },
+    },
+```
+
+---
 
 
 
