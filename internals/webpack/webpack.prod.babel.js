@@ -1,5 +1,6 @@
 // Important modules this config uses
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
@@ -66,6 +67,7 @@ module.exports = require('./webpack.base.babel')({
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
