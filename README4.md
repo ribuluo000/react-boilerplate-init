@@ -43,6 +43,11 @@ history.push('/demo'),
 如果清空缓存并刷新仍然会有404异常，这个时候需要后端服务器配置使用通配符*监听所有请求，返回目标html文档，就可以正常显示了。
 ```
 
+##### PWA 全称 Progressive Web App，即渐进式 WEB 应用。
+
+- offline-plugin
+  [使用 offline-plugin 搭配 webpack 轻松实现 PWA https://segmentfault.com/a/1190000010669126](https://segmentfault.com/a/1190000010669126)
+
 ---
 
 #### 国际化
@@ -188,6 +193,11 @@ mock 数据，让前端不在等待后端接口
 
 #### 检查和纠错工具
 
+##### 模块间循环引用问题
+
+- circular-dependency-plugin
+  [模块间循环引用问题 https://segmentfault.com/a/1190000021250561](https://segmentfault.com/a/1190000021250561)
+
 ##### 样式语法检查和纠错工具
 
 vscode
@@ -240,6 +250,75 @@ https://prettier.io/docs/en/precommit.html#option-2-pretty-quickhttpsgithubcomaz
 
 ---
 
+#### react
+
+- react
+
+```
+React 是一个用于构建用户界面的 JavaScript 库。
+```
+
+- react-dom
+
+```
+react-dom 的 package 提供了可在应用顶层使用的 DOM（DOM-specific）方法，如果有需要，你可以把这些方法用于 React 模型以外的地方。不过一般情况下，大部分组件都不需要使用这个模块。
+```
+
+- prop-types
+
+```
+Runtime type checking for React props and similar objects.
+
+```
+
+---
+
+#### 常用 loader
+
+- url-loader
+- svg-url-loader
+- style-loader
+- less-loader
+- image-webpack-loader
+- html-loader
+- file-loader
+- css-loader
+- babel-loader
+- @svgr/webpack
+
+---
+
+#### 常用 babel
+
+相关配置请参考官方文档
+
+```
+  "dependencies": {
+    "@babel/polyfill": "7.8.3",
+  },
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.8.6",
+    "@babel/plugin-proposal-class-properties": "7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/plugin-transform-modules-commonjs": "7.8.3",
+    "@babel/plugin-transform-react-constant-elements": "7.8.3",
+    "@babel/plugin-transform-react-inline-elements": "7.8.3",
+    "@babel/preset-env": "7.8.6",
+    "@babel/preset-react": "7.8.3",
+    "@babel/register": "7.8.6",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.1.0",
+    "babel-loader": "8.0.6",
+    "babel-plugin-dynamic-import-node": "2.3.0",
+    "babel-plugin-import": "^1.13.0",
+    "babel-plugin-lodash": "3.3.4",
+    "babel-plugin-react-intl": "5.1.18",
+    "babel-plugin-styled-components": "1.10.7",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+```
+
+---
+
 #### 兼容性
 
 - react-app-polyfill 兼容 ie11
@@ -257,7 +336,7 @@ This package includes polyfills for various browsers. It includes minimum requir
 
 ---
 
-#### 打包优化
+### 打包优化
 
 ##### dependencies：
 
