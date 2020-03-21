@@ -11,11 +11,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-
 export function LanguageProvider(props) {
   return (
     <IntlProvider
-      locale={props.locale}
+        locale={props.locale}
       key={props.locale}
       messages={props.messages[props.locale]}
     >
@@ -40,7 +39,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LanguageProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
