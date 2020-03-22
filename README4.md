@@ -45,8 +45,10 @@ history.push('/demo'),
 
 ##### PWA 全称 Progressive Web App，即渐进式 WEB 应用。
 
-- offline-plugin
+- offline-plugin 可以用来为你的项目提供离线（offline）的用户体验。
   [使用 offline-plugin 搭配 webpack 轻松实现 PWA https://segmentfault.com/a/1190000010669126](https://segmentfault.com/a/1190000010669126)
+
+- webpack-pwa-manifest 可以为你的 PWA 应用生成 manifest.json 文件。
 
 ---
 
@@ -253,6 +255,10 @@ https://prettier.io/
 
 https://prettier.io/docs/en/precommit.html#option-2-pretty-quickhttpsgithubcomazzpretty-quick
 
+[CSS 命名规范-BEM https://bemcss.com/](https://bemcss.com/)
+
+[JavaScript Style Guide-Airbnb https://github.com/airbnb/javascript](https://github.com/airbnb/javascript)
+
 ---
 
 #### react
@@ -366,6 +372,8 @@ Combine with lodash-webpack-plugin for even smaller cherry-picked builds!
 - compression-webpack-plugin 实现 gzip 压缩
 
 - terser-webpack-plugin 实现 js 压缩
+
+- imagemin-webpack-plugin 是一个使用 imagemin 进行图片压缩的插件。
 
 ```
 This plugin uses terser to minify your JavaScript.

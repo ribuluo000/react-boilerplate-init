@@ -7,6 +7,7 @@ const OfflinePlugin = require('offline-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -224,6 +225,13 @@ module.exports = require('./webpack.base.babel')({
       hashFunction: 'sha256',
       hashDigest: 'hex',
       hashDigestLength: 20,
+    }),
+    // Make sure that the plugin is after any plugins that add images
+    new ImageminPlugin({
+      disable: false, // Disable during development
+      pngquant: {
+        quality: '95-100',
+      },
     }),
   ],
 

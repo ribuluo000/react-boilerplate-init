@@ -318,6 +318,32 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 ---
 
+### 使用 webpack 插件 imagemin-webpack-plugin 使用 imagemin 进行图片压缩；
+
+```
+npm i -D imagemin-webpack-plugin
+```
+
+webpack.prod.babel.js
+
+```
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+
+
+
+  plugins: [
+        // Make sure that the plugin is after any plugins that add images
+    new ImageminPlugin({
+      disable: false, // Disable during development
+      pngquant: {
+        quality: '95-100'
+      }
+    }),
+  ]
+```
+
+---
+
 ### 拆包 splitChunks
 
       minSize: 200000,
