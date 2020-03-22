@@ -344,6 +344,27 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 ---
 
+### 使用 webpack 插件 duplicate-package-checker-webpack-plugin 如果你的代码里面有重复的包，这个插件会给你警告进而避免打包的包体积过大或者产生 bug；
+
+```
+npm i -D duplicate-package-checker-webpack-plugin
+```
+
+webpack.prod.babel.js
+
+```
+const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
+
+
+  plugins: [
+    new DuplicatePackageCheckerPlugin(),
+  ]
+```
+
+[https://github.com/darrenscerri/duplicate-package-checker-webpack-plugin](https://github.com/darrenscerri/duplicate-package-checker-webpack-plugin)
+
+---
+
 ### 拆包 splitChunks
 
       minSize: 200000,

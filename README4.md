@@ -373,7 +373,9 @@ Combine with lodash-webpack-plugin for even smaller cherry-picked builds!
 
 - terser-webpack-plugin 实现 js 压缩
 
-- imagemin-webpack-plugin 是一个使用 imagemin 进行图片压缩的插件。
+- imagemin-webpack-plugin 是一个使用 imagemin 进行图片压缩的插件
+
+- duplicate-package-checker-webpack-plugin 如果你的代码里面有重复的包，这个插件会给你警告进而避免打包的包体积过大或者产生 bug
 
 ```
 This plugin uses terser to minify your JavaScript.
