@@ -10,5 +10,6 @@
  */
 
 export const LOAD_SERVER_DATA = 'boilerplate/Demo/LOAD_SERVER_DATA';
-export const LOAD_SERVER_DATA_SUCCESS = 'boilerplate/Demo/LOAD_SERVER_DATA_SUCCESS';
+export const LOAD_SERVER_DATA_SUCCESS =
+  'boilerplate/Demo/LOAD_SERVER_DATA_SUCCESS';
 export const LOAD_SERVER_DATA_ERROR = 'boilerplate/Demo/LOAD_SERVER_DATA_ERROR';

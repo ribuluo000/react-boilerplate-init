@@ -8,7 +8,7 @@ export const useApi = () => {
     options: {},
     startTime: '',
   });
-  const { funcName, options, startTime, } = requestData;
+  const { funcName, options, startTime } = requestData;
   const initialState = {
     isLoading: false,
     isError: false,

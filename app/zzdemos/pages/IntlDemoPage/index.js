@@ -12,7 +12,5 @@ import messages from 'translations/messages';
 export default function IntlDemoPage() {
   const intl = useIntl();
 
-  return (
-    <h1>{intl.formatMessage(messages['This is the Demo container!'])}</h1>
-  );
+  return <h1>{intl.formatMessage(messages['This is the Demo container!'])}</h1>;
 }

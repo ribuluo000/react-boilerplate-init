@@ -1,4 +1,3 @@
-
 const config = {
   rootApi: 'https://test.io',
   mockable: false,

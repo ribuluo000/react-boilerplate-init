@@ -1,7 +1,7 @@
 .generate-font-size(30);
 .generate-font-size(@n, @i: 1) when (@i =< @n) {
   .fs-@{i} {
-    font-size:(1px*@i) !important;
+    font-size: (1px * @i) !important;
   }
   .generate-font-size(@n, (@i + 1));
 }

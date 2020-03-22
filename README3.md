@@ -185,6 +185,85 @@ return appReducer(state, action);
 
 ---
 
+#### 网络请求
+
+- axios
+
+```
+Promise based HTTP client for the browser and node.js
+
+```
+
+详见 README2.md
+
+---
+
+#### mock 数据
+
+- mockjs
+
+详见 README2.md mock 数据使用示例
+详见 app/mocks/
+
+### 格式化所有文件
+
+```
+npm run prettify "app/**/*.js"
+npm run prettify "app/**/*.less"
+npm run prettify "app/**/*.json”
+```
+
+---
+
+##### 使用 ESLint+Prettier + pre-commit(pretty-quick husky) 来统一前端代码风格 (.js,.less,.json)
+
+手动格式化所有文件
+
+```
+npm run prettify "app/**/*.js"
+npm run prettify "app/**/*.less"
+npm run prettify "app/**/*.json”
+```
+
+- prettier
+- eslint-config-prettier
+- eslint-plugin-prettier
+
+- babel-eslint
+- eslint
+- eslint-config-airbnb
+- eslint-config-airbnb-base
+- eslint-import-resolver-webpack
+- eslint-plugin-import
+- eslint-plugin-jsx-a11y
+- eslint-plugin-react
+- eslint-plugin-react-hooks
+- eslint-plugin-redux-saga
+
+- pre-commit
+- husky
+- pretty-quick
+
+```
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
+
+```
+
+参考：
+[解决 Mac 下 SourceTree pre-commit 被跳过的问题 https://www.jianshu.com/p/7b7b20b35fde](https://www.jianshu.com/p/7b7b20b35fde)
+
+https://prettier.io/
+
+https://prettier.io/docs/en/precommit.html#option-2-pretty-quickhttpsgithubcomazzpretty-quick
+
+---
+
 ### 添加 bignumber.js ，echarts ，
 
 ---

@@ -165,9 +165,6 @@ Promise based HTTP client for the browser and node.js
 
 ### devDependencies：
 
-@babel/plugin-syntax-dynamic-import、
-@babel/plugin-proposal-class-properties、
-
 ---
 
 #### 支持 svg 作为组件使用
@@ -210,6 +207,14 @@ vscode
  -->
 
 ##### 使用 ESLint+Prettier + pre-commit(pretty-quick husky) 来统一前端代码风格 (.js,.less,.json)
+
+手动格式化所有文件
+
+```
+npm run prettify "app/**/*.js"
+npm run prettify "app/**/*.less"
+npm run prettify "app/**/*.json”
+```
 
 - prettier
 - eslint-config-prettier

@@ -14,7 +14,7 @@ import { IntlProvider } from 'react-intl';
 export function LanguageProvider(props) {
   return (
     <IntlProvider
-          locale={props.locale}
+      locale={props.locale}
       key={props.locale}
       messages={props.messages[props.locale]}
     >
