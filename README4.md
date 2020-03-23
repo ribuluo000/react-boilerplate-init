@@ -248,6 +248,8 @@ npm run prettify "app/**/*.json”
 
 ```
 
+- pre-commit 的时候回检查并修复可以修复的 error，格式化代码（.js, .less, .json），如果有修复不了的 error，那么需要手动修复后再重新 commit；
+
 参考：
 [解决 Mac 下 SourceTree pre-commit 被跳过的问题 https://www.jianshu.com/p/7b7b20b35fde](https://www.jianshu.com/p/7b7b20b35fde)
 
@@ -401,15 +403,16 @@ build 之后如果代码没有改变那么hash是一样的，所以如果第三�
 
 # 具体实现可以查看项目中相关代码，也可以自行搜索。
 
-
 ### 常用命令
 
 - 分析打包结果，优化打包逻辑；
+
 ```
 npm run analyze
 ```
 
 - 打包不同环境
+
 ```
 npm run build:uat
 npm run build:dev
@@ -417,18 +420,33 @@ npm run build
 ```
 
 - 开发常用
+
 ```
 npm start
 ```
 
+#### 提交的时候会自动格式化文件
+
 手动格式化所有文件
 
 ```
+npm run pretty-quick
+
+||
+
 npm run prettify "app/**/*.js"
 npm run prettify "app/**/*.less"
 npm run prettify "app/**/*.json”
 ```
 
+手动格式化 git staged 文件
+
+```
+npm run pretty-quick:staged
+
+||
+
+npm run lint:staged
+```
+
 ---
-
-

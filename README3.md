@@ -323,6 +323,14 @@ npm run prettify "app/**/*.json”
 
 ```
 
+- pre-commit 的时候回检查并修复可以修复的 error，格式化代码，如果有修复不了的 error，那么需要手动修复后再重新 commit；
+
+This boilerplate includes a complete static code analysis setup. It's composed of [ESLint](http://eslint.org/), [stylelint](https://stylelint.io/), and [Prettier](https://prettier.io/).
+
+We recommend that you install the relevant IDE extensions for each one of these tools. Once you do, every time you'll press save, all your code will be formatted and reviewed for quality automatically. (Read more at [editor.md](./editor.md).)
+
+We've also set up a git hook to automatically analyze and fix linting errors before your code is committed. If you'd like to disable it or modify its behavior, take a look at the `lint-staged` section in `package.json`.
+
 参考：
 [解决 Mac 下 SourceTree pre-commit 被跳过的问题 https://www.jianshu.com/p/7b7b20b35fde](https://www.jianshu.com/p/7b7b20b35fde)
 
@@ -615,19 +623,16 @@ webpack.prod.babel.js
 
 ### 深层对象安全调用
 
-- loadash _get
+- loadash \_get
 
-
-loadash参数正好与ramda相反，从左到右，而且第二个参数可以是Array或String：
+loadash 参数正好与 ramda 相反，从左到右，而且第二个参数可以是 Array 或 String：
 
 _.get({ a: { b: 2 } }, ['a', 'b'], 'N/A');
 _.get({ a: { b: 2 } }, 'a.b', 'N/A');
 
-
-
 - const safe = obj?.qux?.baz; // undefined //禁用 因为 eslint 不能识别到 不好提交代码
-https://babeljs.io/docs/en/next/babel-plugin-proposal-optional-chaining
-https://www.jianshu.com/p/e9ed7660034e
+  https://babeljs.io/docs/en/next/babel-plugin-proposal-optional-chaining
+  https://www.jianshu.com/p/e9ed7660034e
 
 https://lodash.com/docs/4.17.15#get
 
@@ -681,7 +686,9 @@ utils/AAValidateUtils.js 项目中常用的验证处理方法写在这里;
 ### error
 
 ---
-- 
+
+-
+
 ```
 ERROR in ./app/assets/images/test.png
 Module build failed (from ./node_modules/image-webpack-loader/index.js):
@@ -694,6 +701,7 @@ ArgumentError: Expected `options.quality` to be of type `array` but received typ
 ---
 
 - babel-eslint 高版本有问题 可以用 "babel-eslint": "7.2.3",
+
 ```
 TypeError: Cannot read property 'range' of null
 ```
