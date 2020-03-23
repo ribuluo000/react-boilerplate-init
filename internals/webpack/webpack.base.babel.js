@@ -123,7 +123,7 @@ module.exports = (options) => ({
           {
             loader: 'url-loader',
             options: {
-              name(file) {
+              name() {
                 if (devMode) {
                   return '[path][name].[ext]';
                 }

@@ -4,6 +4,7 @@
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import * as http from 'api/http';
+import _ from 'lodash';
 import { LOAD_REPOS } from './constants';
 import { reposLoaded, repoLoadingError } from './actions';
 
@@ -14,7 +15,9 @@ const { get } = http;
  */
 export function* getRepos() {
   // Select username from store
-  const username = yield select(state => state?.zzdemosaga?.username);
+  const username = yield select((state) =>
+    _.get(state, 'state.zzdemosaga.username'),
+  );
   console.log('username', username);
   try {
     const options = {

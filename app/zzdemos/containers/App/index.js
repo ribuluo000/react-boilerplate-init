@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+import _ from 'lodash';
 import App from 'zzdemos/pages/App';
 import { loadServerData } from './actions';
 import reducer from './reducer';
@@ -40,10 +41,10 @@ Demo.propTypes = {
   serverData: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   getServerData: PropTypes.func,
 };
-const mapStateToProps = state => ({
-  serverData: state?.zzdemoapp?.serverData || {},
-  loading: state?.zzdemoapp?.loading,
-  error: state?.zzdemoapp?.error,
+const mapStateToProps = (state) => ({
+  serverData: _.get(state, 'state.zzdemoapp.serverData', {}),
+  loading: _.get(state, 'state.zzdemoapp.loading'),
+  error: _.get(state, 'state.zzdemoapp.error'),
 });
 
 export function mapDispatchToProps(dispatch) {

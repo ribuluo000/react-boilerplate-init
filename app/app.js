@@ -18,6 +18,7 @@ import 'sanitize.css/sanitize.css';
 import 'assets/less/global.less';
 
 // Import root mocks
+// eslint-disable-next-line no-unused-vars
 import mocks from 'mocks';
 
 // Import root app
@@ -42,7 +43,7 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
-const render = messages => {
+const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
@@ -67,12 +68,12 @@ if (module.hot) {
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  new Promise(resolve => {
+  new Promise((resolve) => {
     resolve(import('intl'));
   })
     .then(() => Promise.all([import('intl/locale-data/jsonp/en.js')]))
     .then(() => render(translationMessages))
-    .catch(err => {
+    .catch((err) => {
       throw err;
     });
 } else {
@@ -83,6 +84,7 @@ if (!window.Intl) {
 // it's not most important operation and if main code fails,
 // we do not want it installed
 if (process.env.NODE_ENV === 'production') {
+  // eslint-disable-next-line global-require
   const runtime = require('offline-plugin/runtime');
   runtime.install({
     onUpdating: () => {

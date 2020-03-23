@@ -615,9 +615,21 @@ webpack.prod.babel.js
 
 ### 深层对象安全调用
 
-const safe = obj?.qux?.baz; // undefined
+- loadash _get
+
+
+loadash参数正好与ramda相反，从左到右，而且第二个参数可以是Array或String：
+
+_.get({ a: { b: 2 } }, ['a', 'b'], 'N/A');
+_.get({ a: { b: 2 } }, 'a.b', 'N/A');
+
+
+
+- const safe = obj?.qux?.baz; // undefined //禁用 因为 eslint 不能识别到 不好提交代码
 https://babeljs.io/docs/en/next/babel-plugin-proposal-optional-chaining
 https://www.jianshu.com/p/e9ed7660034e
+
+https://lodash.com/docs/4.17.15#get
 
 ---
 
@@ -669,7 +681,7 @@ utils/AAValidateUtils.js 项目中常用的验证处理方法写在这里;
 ### error
 
 ---
-
+- 
 ```
 ERROR in ./app/assets/images/test.png
 Module build failed (from ./node_modules/image-webpack-loader/index.js):
@@ -678,5 +690,14 @@ ArgumentError: Expected `options.quality` to be of type `array` but received typ
 
 这个是因为 image-webpack-loader 版本造成的，更新到最新版本使用方法即可解决
 更改为： quality: [0.65, 0.9],
+
+---
+
+- babel-eslint 高版本有问题 可以用 "babel-eslint": "7.2.3",
+```
+TypeError: Cannot read property 'range' of null
+```
+
+[https://github.com/babel/babel-eslint/issues/530](https://github.com/babel/babel-eslint/issues/530)
 
 ---

@@ -1,8 +1,11 @@
+/* eslint-disable no-param-reassign */
 /**
  * Data工具类
  * 项目中常用的数据处理方法写在这里，
  * 其他地方直接引用
  */
+
+import _ from 'lodash';
 
 const utils = {
   // 将具有层级关系的原始数据转换成树形结构
@@ -23,8 +26,8 @@ export default utils;
  * @returns
  */
 function selectItem(options, selectedValue, idName = 'value') {
-  for (let i = 0; i < options.length; i++) {
-    if (selectedValue == options[i][idName]) {
+  for (let i = 0; i < options.length; i += 1) {
+    if (selectedValue === options[i][idName]) {
       options[i].selected = true;
     }
   }
@@ -38,8 +41,8 @@ function selectItem(options, selectedValue, idName = 'value') {
  * @returns selectedItem
  */
 function getSelectedItem(options, selectedValue, idName = 'value') {
-  for (let i = 0; i < options.length; i++) {
-    if (selectedValue == options[i][idName]) {
+  for (let i = 0; i < options.length; i += 1) {
+    if (selectedValue === options[i][idName]) {
       return options[i];
     }
   }
@@ -57,17 +60,17 @@ function getSelectedItem(options, selectedValue, idName = 'value') {
 function toTree(origin_data = [], pk = 'id', pid = 'pid', child = 'child') {
   const data = _.cloneDeep(origin_data);
   // 删除 所有 child,以防止多次调用
-  data.forEach(item => {
+  data.forEach((item) => {
     delete item[child];
   });
   // 将数据存储为 以 id 为 KEY 的 map 索引数据列
   const map = {};
-  data.forEach(item => {
+  data.forEach((item) => {
     map[item[pk]] = item;
   });
 
   const val = [];
-  data.forEach(item => {
+  data.forEach((item) => {
     // 以当前遍历项，的pid,去map对象中找到索引的id
     const parent = map[item[pid]];
     // 如果找到索引，那么说明此项不在顶级当中,那么需要把此项添加到，他对应的父级中

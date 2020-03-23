@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /**
  * Validate 工具类
  * 项目中常用的验证处理方法写在这里，
@@ -186,7 +187,7 @@ function isNum(str) {
  * @returns {Boolean}
  */
 function isEqualsIgnorecase(str1, str2) {
-  if (str1.toUpperCase() == str2.toUpperCase()) {
+  if (str1.toUpperCase() === str2.toUpperCase()) {
     return true;
   }
   return false;

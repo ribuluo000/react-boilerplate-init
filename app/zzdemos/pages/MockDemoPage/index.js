@@ -9,6 +9,7 @@ import { useApi } from 'api/hook';
 
 export default function MockDemoPage() {
   const [data, setData] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [options, setOptions] = useState({
     // type: 'all',
     // sort: 'updated',

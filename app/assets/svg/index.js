@@ -1,12 +1,16 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-export const SuccessSvg = props => {
+export const SuccessSvg = (
+  props = { color: '#ff0000', width: 30, height: 30 },
+) => {
   const { color, width, height } = props;
   return (
     <svg
       viewBox="0 0 82 82"
       version="1.1"
-      {...props}
+      width={width}
+      height={height}
       xmlns="http://www.w3.org/2000/svg"
       xlink="http://www.w3.org/1999/xlink"
     >

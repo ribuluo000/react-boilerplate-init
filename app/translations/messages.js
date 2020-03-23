@@ -9,11 +9,12 @@ const enTranslationMessages = require('./en.json');
 
 const getMessages = () => {
   const obj = {};
-  Object.keys(enTranslationMessages).map(value => {
+  Object.keys(enTranslationMessages).map((value) => {
     obj[value] = {
       id: value,
       defaultMessage: value,
     };
+    return value;
   });
   return obj;
 };

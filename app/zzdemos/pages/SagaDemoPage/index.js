@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Form, Input, Button } from 'antd';
+import _ from 'lodash';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -16,6 +17,34 @@ import reducer from './reducer';
 import saga from './saga';
 
 const key = 'zzdemosaga';
+
+const getVRepos = ({ loading, error, repos }) => {
+  if (loading) {
+    return <div>loading...</div>;
+  }
+
+  if (error !== false) {
+    return <div>Something went wrong, please try again!</div>;
+  }
+
+  if (repos !== false) {
+    return (
+      <div>
+        {repos.map((item) => (
+          <p key={item.full_name}>{item.full_name}</p>
+        ))}
+      </div>
+    );
+  }
+
+  return null;
+};
+
+getVRepos.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+};
 
 export function SagaDemoPage({
   username,
@@ -33,35 +62,14 @@ export function SagaDemoPage({
     if (username && username.trim().length > 0) onSubmitForm();
   }, []);
 
-  const getVRepos = ({ loading, error, repos }) => {
-    if (loading) {
-      return <div>loading...</div>;
-    }
-
-    if (error !== false) {
-      return <div>Something went wrong, please try again!</div>;
-    }
-
-    if (repos !== false) {
-      return (
-        <div>
-          {repos.map((item, i) => (
-            <p key={item.full_name}>{item.full_name}</p>
-          ))}
-        </div>
-      );
-    }
-
-    return null;
-  };
   const vRepos = getVRepos({ loading, error, repos });
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     console.log('Success:', values);
     onSubmitForm();
   };
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
@@ -99,17 +107,17 @@ SagaDemoPage.propTypes = {
   username: PropTypes.string,
   onChangeUsername: PropTypes.func,
 };
-const mapStateToProps = state => ({
-  repos: state?.zzdemosaga?.userData?.repositories || [],
-  username: state?.zzdemosaga?.username,
-  loading: state?.zzdemosaga?.loading,
-  error: state?.zzdemosaga?.error,
+const mapStateToProps = (state) => ({
+  repos: _.get(state, 'state.zzdemosaga.userData.repositories', []),
+  username: _.get(state, 'state.zzdemosaga.username'),
+  loading: _.get(state, 'state.zzdemosaga.loading'),
+  error: _.get(state, 'state.zzdemosaga.error'),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: evt => {
+    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },

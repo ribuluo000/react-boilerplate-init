@@ -16,7 +16,7 @@ module.exports = {
     es6: true,
   },
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 11,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
@@ -78,6 +78,9 @@ module.exports = {
     'redux-saga/no-yield-in-race': 2,
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
+    // 有一些 event 的时候, 不需要 role 属性, 不需要其他解释
+    "jsx-a11y/no-static-element-interactions":0,
+    "jsx-a11y/click-events-have-key-events":0,
   },
   settings: {
     'import/resolver': {

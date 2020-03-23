@@ -6,7 +6,7 @@
 import React from 'react';
 import { Button, DatePicker, message } from 'antd';
 export default function AntdDemoPage() {
-  const handleChangeDatePicker = date => {
+  const handleChangeDatePicker = (date) => {
     console.log('handleChangeDatePicker.date', date);
     message.info(
       `您选择的日期是: ${date ? date.format('YYYY-MM-DD') : '未选择'}`,

@@ -9,6 +9,7 @@ import { useApi } from 'api/hook';
 
 export default function AxiosDemoPage() {
   const [data, setData] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [options, setOptions] = useState({
     type: 'all',
     sort: 'updated',

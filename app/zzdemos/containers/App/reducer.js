@@ -23,7 +23,7 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign */
 const zzdemoReducer = (state = initialState, action) =>
-  produce(state, draft => {
+  produce(state, (draft) => {
     switch (action.type) {
       case LOAD_SERVER_DATA:
         draft.loading = true;

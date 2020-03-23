@@ -47,6 +47,7 @@ module.exports = plop => {
       execSync(`npm run prettify -- "${folderPath}"`);
       return folderPath;
     } catch (err) {
+      console.log(err);
       throw err;
     }
   });
@@ -67,6 +68,7 @@ module.exports = plop => {
         `${config.file}.${BACKUPFILE_EXTENSION}`,
       );
     } catch (err) {
+      console.log(err);
       throw err;
     }
   });

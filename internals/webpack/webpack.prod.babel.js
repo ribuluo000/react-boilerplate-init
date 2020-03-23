@@ -17,12 +17,11 @@ const devMode = process.env.NODE_ENV === 'development';
 const mincssLoader = {
   loader: MiniCssExtractPlugin.loader,
   options: {
-    publicPath: (resourcePath, context) => {
+    publicPath: (resourcePath, context) =>
       // publicPath is the relative path of the resource to the context
       // e.g. for ./css/admin/main.css the publicPath will be ../../
       // while for ./css/main.css the publicPath will be ../
-      return path.relative(path.dirname(resourcePath), context) + '/';
-    },
+      `${path.relative(path.dirname(resourcePath), context)}/`,
     // publicPath: '../',
     // only enable hot in development
     hmr: devMode,
@@ -75,7 +74,7 @@ module.exports = require('./webpack.base.babel')({
     splitChunks: {
       chunks: 'all',
       maxInitialRequests: 10,
-      minSize: 0,
+      // minSize: 0,
       // maxSize: 244000,
       minSize: 200000,
       maxSize: 244000,

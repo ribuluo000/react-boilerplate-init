@@ -9,8 +9,6 @@ import history from 'utils/history';
 import { Menu } from 'antd';
 import { AppstoreOutlined } from '@ant-design/icons';
 
-const { SubMenu } = Menu;
-
 export default function MenuDemoPage() {
   // 首次进入和刷新后初始化菜单选中状态
   const pathnameInit = window.location.pathname;

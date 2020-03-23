@@ -20,11 +20,12 @@ export default function createReducer(injectedReducers = {}) {
 
   const rootReducer = (state, action) => {
     // 重置redux为初始状态 eg: 在登录页需要进行重置；
+    let initState = null;
     if (action.type === 'RESET_REDUX') {
       const { language } = state;
-      state = { language };
+      initState = { language };
     }
-    return appReducer(state, action);
+    return appReducer(initState || state, action);
   };
 
   return rootReducer;

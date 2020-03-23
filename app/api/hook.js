@@ -1,5 +1,5 @@
 /* eslint-disable no-return-await */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import api from 'api';
 
 export const useApi = () => {

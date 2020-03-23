@@ -1,2 +1,5 @@
 import configs from 'configs';
-const all = configs.mockable ? require('./all') : null;
+if (configs.mockable) {
+  // eslint-disable-next-line global-require
+  require('./all');
+}

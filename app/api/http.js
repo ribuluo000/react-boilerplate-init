@@ -70,10 +70,7 @@ export function get(url, options) {
  * @return {object}           The response data
  */
 export function post(url, options) {
-  return axios
-    .post(url, options)
-    .then(checkStatus)
-    .then(parseJSON);
+  return axios.post(url, options).then(checkStatus).then(parseJSON);
 }
 
 /**
