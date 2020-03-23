@@ -287,10 +287,11 @@ Runtime type checking for React props and similar objects.
 #### 常用 loader
 
 - url-loader
+- image-webpack-loader
+
 - svg-url-loader
 - style-loader
 - less-loader
-- image-webpack-loader
 - html-loader
 - file-loader
 - css-loader
@@ -375,7 +376,7 @@ Combine with lodash-webpack-plugin for even smaller cherry-picked builds!
 
 - optimize-css-assets-webpack-plugin mini-css-extract-plugin 实现 css 压缩
 
-- imagemin-webpack-plugin 是一个使用 imagemin 进行图片压缩的插件
+- imagemin-webpack-plugin 是一个使用 imagemin 进行图片压缩的插件 image-webpack-loader 实现图片压缩,减少打包后的大小
 
 - duplicate-package-checker-webpack-plugin 如果你的代码里面有重复的包，这个插件会给你警告进而避免打包的包体积过大或者产生 bug
 

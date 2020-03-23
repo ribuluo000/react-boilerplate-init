@@ -134,6 +134,74 @@ https://ant.design/docs/react/introduce-cn
 
 ---
 
+### url-loader 实现对图片的支持；image-webpack-loader 实现图片压缩,减少打包后的大小
+
+```
+npm i url-loader -D
+npm i image-webpack-loader -D
+```
+
+- webpack.config.js
+
+```
+      {
+        test: /\.(jpg|png|gif|mp4|webm)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name(file) {
+                if (devMode) {
+                  return '[path][name].[ext]';
+                }
+                return '[path][name].[ext]?[hash]';
+              },
+              // Inline files smaller than 10 kB
+              limit: 10 * 1024,
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                enabled: false,
+                // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
+                // Try enabling it in your environment by switching the config to:
+                // enabled: true,
+                // progressive: true,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4,
+              },
+            },
+          },
+        ],
+      },
+```
+
+```
+import image from 'zzdemos/assets/images/test.png';
+import image2 from 'zzdemos/assets/images/test2.png';
+
+      <img src={image} width={30} height={30} alt="test" />
+      <img src={image2} width={30} height={30} alt="test" />
+      <img
+        src="https://www.baidu.com/img/bd_logo1.png"
+        width={30}
+        height={30}
+        alt="test"
+      />
+```
+
+---
+
 ### 添加自定义 svg 支持；
 
 ```
@@ -318,7 +386,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 ---
 
-### 使用 webpack 插件 imagemin-webpack-plugin 使用 imagemin 进行图片压缩；
+### 使用 webpack 插件 imagemin-webpack-plugin 使用 imagemin 进行图片压缩；image-webpack-loader 实现图片压缩,减少打包后的大小
 
 ```
 npm i -D imagemin-webpack-plugin
@@ -402,7 +470,7 @@ const mincssLoader = {
 module.exports = {
   optimization: {
     minimizer: [
-      new TerserJSPlugin({}), 
+      new TerserJSPlugin({}),
       new OptimizeCSSAssetsPlugin({}),
     ],
   },
@@ -425,9 +493,8 @@ webpack.prod.babel.js
           options.mincssLoader ? options.mincssLoader : 'style-loader',
 ```
 
-
-- mini-css-extract-plugin 插件应该只在生产环境构建中使用，并且在loader链中不应该有style-loader;
-[https://www.cnblogs.com/blackgan/p/10590540.html](https://www.cnblogs.com/blackgan/p/10590540.html)
+- mini-css-extract-plugin 插件应该只在生产环境构建中使用，并且在 loader 链中不应该有 style-loader;
+  [https://www.cnblogs.com/blackgan/p/10590540.html](https://www.cnblogs.com/blackgan/p/10590540.html)
 
 [https://github.com/webpack-contrib/mini-css-extract-plugin/issues/288](https://github.com/webpack-contrib/mini-css-extract-plugin/issues/288)
 
@@ -596,5 +663,20 @@ utils/AAValidateUtils.js 项目中常用的验证处理方法写在这里;
 ### 添加各种 demo 效果；
 
 详见 README2.md
+
+---
+
+### error
+
+---
+
+```
+ERROR in ./app/assets/images/test.png
+Module build failed (from ./node_modules/image-webpack-loader/index.js):
+ArgumentError: Expected `options.quality` to be of type `array` but received type `string`
+```
+
+这个是因为 image-webpack-loader 版本造成的，更新到最新版本使用方法即可解决
+更改为： quality: [0.65, 0.9],
 
 ---

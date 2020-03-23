@@ -12,8 +12,9 @@ const antdThemeVars = require(`${path.resolve(
   'antd',
   'antdThemeVars.json',
 )}`);
+const devMode = process.env.NODE_ENV === 'development';
 
-module.exports = options => ({
+module.exports = (options) => ({
   mode: options.mode,
   entry: options.entry,
   output: {
@@ -78,11 +79,18 @@ module.exports = options => ({
       },
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
-        use: 'file-loader',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]?[hash]',
+            },
+          },
+        ],
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        include: path.resolve(__dirname, '..', '..', 'app/assets/svg'),
+        include: path.resolve(__dirname, '..', '..', 'app', 'assets', 'svg'),
         use: [
           {
             loader: 'babel-loader',
@@ -110,11 +118,17 @@ module.exports = options => ({
         ],
       },
       {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(jpg|png|gif|mp4|webm)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
+              name(file) {
+                if (devMode) {
+                  return '[path][name].[ext]';
+                }
+                return '[path][name].[ext]?[hash]';
+              },
               // Inline files smaller than 10 kB
               limit: 10 * 1024,
             },
@@ -136,7 +150,7 @@ module.exports = options => ({
                 optimizationLevel: 7,
               },
               pngquant: {
-                quality: '65-90',
+                quality: [0.65, 0.9],
                 speed: 4,
               },
             },
