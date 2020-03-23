@@ -365,6 +365,76 @@ const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack
 
 ---
 
+### 使用 webpack 插件 optimize-css-assets-webpack-plugin mini-css-extract-plugin 压缩 css； terser-webpack-plugin 压缩 js;
+
+```
+npm i -D optimize-css-assets-webpack-plugin
+npm i -D mini-css-extract-plugin
+```
+
+webpack.prod.babel.js
+
+```
+const TerserJSPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const devMode = process.env.NODE_ENV === 'development';
+
+const mincssLoader = {
+  loader: MiniCssExtractPlugin.loader,
+  options: {
+    publicPath: (resourcePath, context) => {
+      // publicPath is the relative path of the resource to the context
+      // e.g. for ./css/admin/main.css the publicPath will be ../../
+      // while for ./css/main.css the publicPath will be ../
+      return path.relative(path.dirname(resourcePath), context) + '/';
+    },
+    // publicPath: '../',
+    // only enable hot in development
+    hmr: devMode,
+    // if hmr does not work, this is a forceful method.
+    reloadAll: true,
+  },
+};
+
+
+module.exports = {
+  optimization: {
+    minimizer: [
+      new TerserJSPlugin({}), 
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: devMode ? '[name].css' : 'css/style.[name].[chunkhash].[hash].css',
+      chunkFilename: devMode ? '[id].css' : 'css/style.[name].[chunkhash].[hash].[id].chunk.css',
+    }),
+  ],
+  mincssLoader,
+};
+```
+
+webpack.prod.babel.js
+
+```
+'style-loader' 改为：
+          options.mincssLoader ? options.mincssLoader : 'style-loader',
+```
+
+
+- mini-css-extract-plugin 插件应该只在生产环境构建中使用，并且在loader链中不应该有style-loader;
+[https://www.cnblogs.com/blackgan/p/10590540.html](https://www.cnblogs.com/blackgan/p/10590540.html)
+
+[https://github.com/webpack-contrib/mini-css-extract-plugin/issues/288](https://github.com/webpack-contrib/mini-css-extract-plugin/issues/288)
+
+[https://github.com/darrenscerri/duplicate-package-checker-webpack-plugin](https://github.com/darrenscerri/duplicate-package-checker-webpack-plugin)
+
+---
+
 ### 拆包 splitChunks
 
       minSize: 200000,

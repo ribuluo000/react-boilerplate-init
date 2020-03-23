@@ -39,19 +39,25 @@ module.exports = options => ({
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          options.mincssLoader ? options.mincssLoader : 'style-loader',
+          'css-loader',
+        ],
       },
       {
         // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
         include: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          options.mincssLoader ? options.mincssLoader : 'style-loader',
+          'css-loader',
+        ],
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
-          'style-loader',
+          options.mincssLoader ? options.mincssLoader : 'style-loader',
           {
             loader: 'css-loader',
             options: {

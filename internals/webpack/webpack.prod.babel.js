@@ -6,9 +6,30 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+
+const devMode = process.env.NODE_ENV === 'development';
+
+const mincssLoader = {
+  loader: MiniCssExtractPlugin.loader,
+  options: {
+    publicPath: (resourcePath, context) => {
+      // publicPath is the relative path of the resource to the context
+      // e.g. for ./css/admin/main.css the publicPath will be ../../
+      // while for ./css/main.css the publicPath will be ../
+      return path.relative(path.dirname(resourcePath), context) + '/';
+    },
+    // publicPath: '../',
+    // only enable hot in development
+    hmr: devMode,
+    // if hmr does not work, this is a forceful method.
+    reloadAll: true,
+  },
+};
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -21,8 +42,8 @@ module.exports = require('./webpack.base.babel')({
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    filename: 'js/[name].[chunkhash].js',
+    chunkFilename: 'js/[name].[chunkhash].chunk.js',
   },
 
   optimization: {
@@ -45,6 +66,7 @@ module.exports = require('./webpack.base.babel')({
         cache: true,
         sourceMap: true,
       }),
+      new OptimizeCSSAssetsPlugin({}),
     ],
     nodeEnv: 'production',
     sideEffects: true,
@@ -121,7 +143,7 @@ module.exports = require('./webpack.base.babel')({
         },
         core_js: {
           chunks: 'all',
-          name: 'core_js',
+          name: 'npm.core_js',
           test: /node_modules\/core-js/,
           enforce: true,
         },
@@ -169,6 +191,17 @@ module.exports = require('./webpack.base.babel')({
         minifyURLs: true,
       },
       inject: true,
+    }),
+
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: devMode
+        ? '[name].css'
+        : 'css/style.[name].[chunkhash].[hash].css',
+      chunkFilename: devMode
+        ? '[id].css'
+        : 'css/style.[name].[chunkhash].[hash].[id].chunk.css',
     }),
 
     // Put it in the end to capture all the HtmlWebpackPlugin's
@@ -241,4 +274,5 @@ module.exports = require('./webpack.base.babel')({
     assetFilter: (assetFilename) =>
       !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
+  mincssLoader,
 });
