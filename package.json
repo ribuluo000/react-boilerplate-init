@@ -13,6 +13,7 @@
   "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
+    "echo": "echo 111 && exit 0",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
@@ -44,6 +45,8 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "pretty-quick": "pretty-quick",
+    "pretty-quick:staged": "pretty-quick --staged",
     "prettify": "prettier --write"
   },
   "browserslist": [
@@ -65,7 +68,11 @@
       "git add --force"
     ]
   },
-  "pre-commit": "lint:staged",
+  "pre-commit": [
+    "echo",
+    "lint:staged"
+  ],
+
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
   },
